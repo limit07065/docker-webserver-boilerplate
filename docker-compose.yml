@@ -1,0 +1,32 @@
+version: '2.1'
+services:
+
+  nginx-proxy:
+    image: nginx-proxy:latest
+#    hostname: qadocker.cavc.illumina.com
+    user: root
+    ports:
+      - 80:80
+      - 443:443
+      - 81:81
+    privileged: true
+    networks:
+      - my_app
+
+#  db:
+#    image: ${ECR}/clarity-db:12.7
+#    hostname: db
+#    restart: unless-stopped
+#    ports:
+#      - 51002:5432
+#    environment:
+#      POSTGRES_USER: postgres
+#      POSTGRES_PASSWORD: passwd
+#      #volumes:
+#      # - ./temp/postgres-data5:/var/lib/postgresql/data
+#    networks:
+#      - clarity_dev
+
+networks:
+  my_app:
+    driver: "bridge"
